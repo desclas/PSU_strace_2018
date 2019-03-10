@@ -14,13 +14,19 @@
 void print_void_ptr(long int i, pid_t pid)
 {
     (void)pid;
-    printf("void %p", (void *)i);
+    printf("%p", (void *)i);
 }
 
 void print_int(long int i, pid_t pid)
 {
     (void)pid;
-    printf("int %d", (int)i);
+    printf("%d", (int)i);
+}
+
+void print_size_t(long int i, pid_t pid)
+{
+	(void)pid;
+	printf("%lu", (size_t)i);
 }
 
 void print_char_ptr(long int i, pid_t pid)
@@ -41,5 +47,5 @@ void print_char_ptr(long int i, pid_t pid)
         tmp += sizeof(long);
         stop++;
     }
-    printf("char \"%s\"", str);
+    printf("\"%s\"", str);
 }

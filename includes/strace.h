@@ -367,5 +367,6 @@ void strace_print(char *name, pid_t pid, int flag, int *st);
 void print_void_ptr(long int i, pid_t pid);
 void print_char_ptr(long int i, pid_t pid);
 void print_int(long int i, pid_t pid);
+void print_size_t(long int i, pid_t pid);
 
 #endif /* !STRACE_H_ */

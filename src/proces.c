@@ -24,8 +24,8 @@ void choice_print(char *name, pid_t pid, int flag)
 {
     size_t x = 0;
     void (*prints[3])(long int, pid_t) = {&print_void_ptr, &print_int,
-                                    &print_char_ptr};
-    char *tab[3] = {"voidptr", "int", "charptr"};
+                                    &print_char_ptr, &print_size_t};
+    char *tab[3] = {"voidptr", "int", "charptr", "size_t"};
 
     for (size_t i = 1; i <= (size_t)(name[strlen(name) - 1] - 48); i++)
     {
