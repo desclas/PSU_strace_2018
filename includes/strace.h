@@ -363,6 +363,7 @@ int child_func(char **ac, char **env, int flags);
 void next_step(pid_t pid, int *st);
 void tracer(char **name, pid_t pid, int *st, int flags);
 size_t strlen_delim(char *str, char delim, size_t nb);
+void strace_print(char *name, pid_t pid, int flag, int *st);
 void print_void_ptr(long int i, pid_t pid);
 void print_char_ptr(long int i, pid_t pid);
 void print_int(long int i, pid_t pid);

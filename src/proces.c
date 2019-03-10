@@ -61,9 +61,7 @@ void tracer(char **name, pid_t pid, int *st, int flags)
             break;
         if ((ret = ptrace(PTRACE_PEEKUSER, pid,
                     sizeof(long) * ORIG_RAX, 0)) != -1) {
-            printf("%.*s(", (int)(strlen_delim(name[ret], ':', 0)), name[ret]);
-            choice_print(name[ret], pid, flags / 10);
-            printf(") = ");
+            strace_print(name[ret], pid, flags, st);
             next_step(pid, st);
             if (flags / 10 == 0)
                 print_void_ptr(takeinfo(0, pid), pid);
