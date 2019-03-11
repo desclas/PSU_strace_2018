@@ -21,7 +21,7 @@ size_t strlen_delim(char *str, char delim, size_t nb)
     return (i);
 }
 
-void strace_print(char *name, pid_t pid, int flag, int *st)
+void strace_print(char *name, pid_t pid, int flag)
 {
     printf("%.*s(", (int)(strlen_delim(name, ':', 0)), name);
     choice_print(name, pid, flag / 10);

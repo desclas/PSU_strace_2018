@@ -23,9 +23,9 @@ void next_step(pid_t pid, int *st)
 void choice_print(char *name, pid_t pid, int flag)
 {
     size_t x = 0;
-    void (*prints[3])(long int, pid_t) = {&print_void_ptr, &print_int,
+    void (*prints[4])(long int, pid_t) = {&print_void_ptr, &print_int,
                                     &print_char_ptr, &print_size_t};
-    char *tab[3] = {"voidptr", "int", "charptr", "size_t"};
+    char *tab[4] = {"voidptr", "int", "charptr", "size_t"};
 
     for (size_t i = 1; i <= (size_t)(name[strlen(name) - 1] - 48); i++)
     {
@@ -35,16 +35,16 @@ void choice_print(char *name, pid_t pid, int flag)
             prints[0](takeinfo(i, pid), pid);
             continue;
         }
-        for (x = 0; x < 3; x++)
+        for (x = 0; x < 4; x++)
             if (strncmp(tab[x],
                     &name[strlen_delim(name, ':', i -1) +1],
                     (strlen_delim(name, ':', i) - 1) -
                     (strlen_delim(name, ':', i - 1) +1))==0)
                 break;
-            if (x == 3)
-                prints[0](takeinfo(i, pid), pid);
-            else
-                prints[x](takeinfo(i, pid), pid);
+        if (x == 4)
+            prints[0](takeinfo(i, pid), pid);
+        else
+            prints[x](takeinfo(i, pid), pid);
     }
 }
 
@@ -61,7 +61,7 @@ void tracer(char **name, pid_t pid, int *st, int flags)
             break;
         if ((ret = ptrace(PTRACE_PEEKUSER, pid,
                     sizeof(long) * ORIG_RAX, 0)) != -1) {
-            strace_print(name[ret], pid, flags, st);
+            strace_print(name[ret], pid, flags);
             next_step(pid, st);
             if (flags / 10 == 0)
                 print_void_ptr(takeinfo(0, pid), pid);
